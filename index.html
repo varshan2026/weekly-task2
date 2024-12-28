@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive TextBox with Character Counter</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(232, 232, 232);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .text-box-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        #charcount {
+            position: absolute;
+            bottom: 60px;
+            right: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            left: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 18px;
+            font-weight: 400;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-box-container">
+            <textarea id="textbox" rows="8" oninput="charlimit()"></textarea>
+            <p id="charcount">0/200</p>
+            <p id="errormessage" class="error">You have exceeded the 200 character limit.</p>
+            <p id="errormessage1" class="error">Please enter at least 80 characters.</p>
+            <button id="btn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        var textbox = document.getElementById('textbox');
+        var charcount = document.getElementById('charcount');
+        var errormessage = document.getElementById('errormessage');
+        var errormessage1 = document.getElementById('errormessage1');
+        var btn = document.getElementById('btn');
+
+        function charlimit() {
+            var currentlength = textbox.value.length;
+
+            charcount.textContent = currentlength + "/200";
+
+            if (currentlength >= 200) {
+                errormessage.style.display = 'block';
+                errormessage1.style.display = 'none';
+                textbox.value = textbox.value.substring(0, 200); 
+            } 
+            
+            else {
+                errormessage.style.display = 'none';
+            }
+        }
+
+        btn.addEventListener('click', function() {
+            var currentlength = textbox.value.length;
+
+            if (currentlength < 80) {
+                errormessage1.style.display = 'block';
+            } 
+            
+            else {
+                errormessage1.style.display = 'none';
+                alert('Message sent successfully!');
+            }
+        });
+
+    </script>
+</body>
+</html>

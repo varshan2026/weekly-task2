@@ -9,4 +9,7 @@ Completed textbox validation system that tracks character count, prevents typing
 ## Tech Stack  
 - **HTML**  
 - **CSS**  
-- **JavaScript**  
+- **JavaScript**
+
+## Check It
+Link: https://varshan2026.github.io/weekly-task2/
